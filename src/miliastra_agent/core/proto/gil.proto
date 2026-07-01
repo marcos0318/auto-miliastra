@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package game.gil;
+
+import "entity.proto";
+
+// Level save root (.gil payload). Field numbers from reverse-engineering.
+message GilLevel {
+  string level_name = 2;
+  string export_info = 3;
+  bytes section_4 = 4;
+  repeated GilLogicEntity logic_entities = 5;
+  bytes section_6 = 6;
+  repeated GilPlacement placements = 27;
+}
+
+// Logic / gameplay entities (field 5 items).
+message GilLogicEntity {
+  int32 entity_id = 1;
+  game.gia.asset.entity.TemplateReference template = 2;
+  repeated game.gia.asset.entity.Property properties = 5;
+  repeated game.gia.asset.entity.Component components = 6;
+  int32 template_id = 8;
+}
+
+// Scene placements — blocks, props, decorations (field 27 items).
+message GilPlacement {
+  int32 entity_id = 1;
+  int32 template_id = 2;
+  int32 field_3 = 3;
+  repeated game.gia.asset.entity.Property properties = 4;
+  repeated game.gia.asset.entity.Component components = 5;
+}

@@ -23,7 +23,9 @@ pip install -e ".[dev]"
 
 ```powershell
 miliastra version
-miliastra parse artifacts\double_gun.gil
+miliastra use double_gun
+miliastra parse-input
+miliastra parse artifacts/projects/double_gun/input/levels/double_gun.gil --json
 miliastra generate-platforms --count 20
 ```
 
@@ -31,15 +33,17 @@ miliastra generate-platforms --count 20
 
 ```text
 miliastra-agent/
-├── artifacts/          # Local GIL saves (gitignored)
+├── artifacts/              # Local data (see artifacts/README.md)
+│   ├── catalog/            #   Shared node catalog
+│   └── projects/           #   Per-project input / parsed / output
 ├── src/miliastra_agent/
-│   ├── cli/            # Typer CLI entrypoint
-│   ├── core/           # Models and GIL/GIA container format
-│   ├── parsers/        # Extract entities, node graphs, etc.
-│   ├── generators/     # Procedural level content
-│   ├── agents/         # Agent orchestration (planned)
-│   └── integrations/   # genshin-ts, MCP, etc.
-└── output/             # Generated .gia assets
+│   ├── cli/                # Typer CLI entrypoint
+│   ├── core/               # Models and GIL/GIA container format
+│   ├── parsers/            # Extract entities, node graphs, etc.
+│   ├── generators/         # Procedural level content
+│   ├── agents/             # Agent orchestration (planned)
+│   └── integrations/       # genshin-ts, MCP, etc.
+└── tests/
 ```
 
 ## References

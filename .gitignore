@@ -9,7 +9,30 @@ build/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+
+# Local probe / debug dumps (keep under artifacts/projects/<name>/parsed/)
+/gil_field*.txt
+/probe_*.txt
+/wire.txt
+
+# Local game data (directory structure + README are tracked)
+artifacts/projects/**/input/**/*
+!artifacts/projects/**/input/**/.gitkeep
+artifacts/projects/**/parsed/**/*
+!artifacts/projects/**/parsed/**/.gitkeep
+artifacts/projects/**/output/**/*
+!artifacts/projects/**/output/**/.gitkeep
+# Legacy flat layout (deprecated)
+artifacts/input/**/*
+!artifacts/input/**/.gitkeep
+artifacts/parsed/**/*
+!artifacts/parsed/**/.gitkeep
+artifacts/output/**/*
+!artifacts/output/**/.gitkeep
+artifacts/*.gil
+artifacts/*.gia
+
 output/
 *.gil
 *.gia
-!tests/fixtures/*.gia
+!tests/fixtures/**
