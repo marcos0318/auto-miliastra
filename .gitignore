@@ -9,11 +9,13 @@ build/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.tmp_wu_yijun/
 
 # Local probe / debug dumps (keep under artifacts/projects/<name>/parsed/)
 /gil_field*.txt
 /probe_*.txt
 /wire.txt
+*.graphs.summary.txt
 
 # Local game data (directory structure + README are tracked)
 artifacts/projects/**/input/**/*
