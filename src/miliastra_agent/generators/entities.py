@@ -6,6 +6,7 @@ from pathlib import Path
 
 from miliastra_agent.core.gi_file import write_gia
 from miliastra_agent.core.models import EntityPlacement, Vec3
+from miliastra_agent.generators.gia_encode import encode_gia_payload
 
 
 def generate_platform_course(
@@ -17,11 +18,7 @@ def generate_platform_course(
     rise: float = 0.5,
     entity_id_start: int = 1078000000,
 ) -> Path:
-    """Generate stepping platforms along +X with gradual +Y rise.
-
-    Note: payload encoding is minimal for now; full protobuf entity assembly
-    will be added in a follow-up iteration (see UGC-File-Generate-Utils).
-    """
+    """Generate stepping platforms along +X with gradual +Y rise."""
     placements: list[EntityPlacement] = []
     for i in range(count):
         placements.append(
@@ -33,15 +30,5 @@ def generate_platform_course(
             )
         )
 
-    # Placeholder payload until protobuf entity encoder is integrated.
-    payload = _encode_placements_stub(placements)
+    payload = encode_gia_payload(placements, entity_id_start=entity_id_start)
     return write_gia(output_path, payload)
-
-
-def _encode_placements_stub(placements: list[EntityPlacement]) -> bytes:
-    lines = []
-    for p in placements:
-        lines.append(
-            f"{p.entity_id},{p.template_id},{p.position.x},{p.position.y},{p.position.z}"
-        )
-    return "\n".join(lines).encode("utf-8")
